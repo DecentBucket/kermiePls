@@ -1,0 +1,5 @@
+C:\Steam\steamapps\common\RimWorld\Mods\kermiePls\Assemblies\RimFlix Music Syncer.dll
+C:\Steam\steamapps\common\RimWorld\Mods\kermiePls\Source\RimFlix Music Syncer\obj\Debug\RimFlix Music Syncer.csproj.AssemblyReference.cache
+C:\Steam\steamapps\common\RimWorld\Mods\kermiePls\Source\RimFlix Music Syncer\obj\Debug\RimFlix Music Syncer.csproj.CoreCompileInputs.cache
+C:\Steam\steamapps\common\RimWorld\Mods\kermiePls\Source\RimFlix Music Syncer\obj\Debug\RimFlix Music Syncer.csproj.CopyComplete
+C:\Steam\steamapps\common\RimWorld\Mods\kermiePls\Source\RimFlix Music Syncer\obj\Debug\RimFlix Music Syncer.dll
