@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/SongDef[clipPath="Songs/Relax/Ceta"]</xpath>
+        <value>
+            <li Class="RimFlix_Music_Syncer.MusicTimerModExtention">
+                <kermieTime>138</kermieTime>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/SongDef[clipPath="Songs/Relax/Alignment"]</xpath>
+        <value>
+            <li Class="RimFlix_Music_Syncer.MusicTimerModExtention">
+                <kermieTime>211.75</kermieTime>
+            </li>
+        </value>
+    </Operation>
+</Patch>

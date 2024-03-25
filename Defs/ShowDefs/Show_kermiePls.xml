@@ -4,6 +4,14 @@
 		<defName>KermiePls_Universal</defName>
 		<label>kermiePls</label>
 		<description>When 2:17 hits.</description>
+		<modExtensions>
+			<li Class= "RimFlix_Music_Syncer.SongsToSync">
+				<songs>
+					<li>Ceta</li>
+					<li>Alignment</li>
+				</songs>
+			</li>
+		</modExtensions>
 		<televisionDefs>
 			<li>TubeTelevision</li>
 			<li>FlatscreenTelevision</li>

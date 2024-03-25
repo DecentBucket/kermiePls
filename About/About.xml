@@ -7,4 +7,21 @@
 	</supportedVersions>
 	<packageId>DecentBucket.RimFlixKermiePls</packageId>
 	<description>kermiePls YA kermiePls YE kermiePls YO kermiePls</description>
+	<modDependencies>
+	<li>
+		<packageId>brrainz.harmony</packageId>
+		<displayName>Harmony</displayName>
+		<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+		<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+	</li>
+	<li>
+		<packageId>aznplucky.RimFlix</packageId>
+		<displayName>RimFlix</displayName>
+		<steamWorkshopUrl>steam://url/CommunityFilePage/2569957748</steamWorkshopUrl>
+	</li>
+	</modDependencies>
+	<forceLoadAfter>
+		<li>brrainz.harmony</li>
+		<li>aznplucky.RimFlix</li>
+	</forceLoadAfter>
 </ModMetaData>
