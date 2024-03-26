@@ -8,6 +8,7 @@ using HarmonyLib;
 using RimFlix;
 using RimWorld;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using Verse;
 
 namespace RimFlix_Music_Syncer
@@ -20,6 +21,7 @@ namespace RimFlix_Music_Syncer
     public class MusicTimerModExtention : DefModExtension
     {
         public float kermieTime;
+        public float kermieDuration;
     }
     
     public class SongsToSync : DefModExtension 
@@ -33,14 +35,20 @@ namespace RimFlix_Music_Syncer
     [HarmonyPatch]
     public class RimFlixMusicSync
     {
-        public static float musicClock;
-        public static bool kermieActivated;
+        public static float musicClock = 0f;
+        //Should replace bools with an enum
+        public static bool kermieActivated = true;
+        public static bool kermieDeactivated = true;
+
+        public static SongDef currentSong;
 
         static RimFlixMusicSync()
         {
             new Harmony("DecentBucket.RimFlix.Patch").PatchAll();
             musicClock = 0;
             kermieActivated = true;
+            currentSong = DefDatabase<SongDef>.GetNamed("EntrySong");
+            //Log.Message("" + currentSong);
             //Log.Message("Started! " + musicClock);
         }
         
@@ -48,26 +56,50 @@ namespace RimFlix_Music_Syncer
         [HarmonyPostfix]
         public static void MusicManagerPlayPostfix()
         {
-            SongDef lastSong = Traverse.Create(Find.MusicManagerPlay).Field<SongDef>("lastStartedSong").Value;
-            TryStartMusicTimer(lastSong);
+            currentSong = Traverse.Create(Find.MusicManagerPlay).Field<SongDef>("lastStartedSong").Value;
+            TryStartMusicTimer(currentSong);
         }
         
         [HarmonyPatch(typeof(MusicManagerPlay), "MusicUpdate")]
         [HarmonyPostfix]
         public static void MusicUpdatePostfix()
         {
-            if (Time.time >= musicClock && !kermieActivated)
+            if (currentSong != null && Find.MusicManagerPlay.IsPlaying)
             {
-                kermieActivated = true;
-                //Log.Message("KermiePls activated!");
                 IEnumerable<Building> furniture;
                 //yes i know how this looks
                 furniture = Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("TubeTelevision"));
                 furniture = furniture.Concat(Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("FlatscreenTelevision")));
                 furniture = furniture.Concat(Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("MegascreenTelevision")));
-                foreach (Building screen in furniture)
+
+                if (Time.time >= musicClock && !kermieActivated)
                 {
-                    screen.TryGetComp<CompScreen>().ChangeShow(DefDatabase<ShowDef>.GetNamed("KermiePls_Universal"));
+                    kermieActivated = true;
+                    kermieDeactivated = false;
+                    //Log.Message("KermiePls activated!");
+                    foreach (Building screen in furniture)
+                    {
+                        screen.TryGetComp<CompScreen>().ChangeShow(DefDatabase<ShowDef>.GetNamed("KermiePls_Universal"));
+                    }
+                }
+
+                if(!kermieDeactivated && currentSong.HasModExtension<MusicTimerModExtention>() && musicClock + currentSong.GetModExtension<MusicTimerModExtention>().kermieDuration <= Time.time)
+                {
+                    //Log.Message("Removing kermiePls!");
+                    foreach(Building screen in furniture)
+                    {
+                        //Log.Message("Removing kermiePls from: " + screen.ThingID);
+                        CompScreen screenComp = screen.TryGetComp<CompScreen>();
+                        Traverse compTraverse = Traverse.Create(screenComp);
+
+                        while (DefDatabase<ShowDef>.GetNamed("KermiePls_Universal").Equals(compTraverse.Property<ShowDef>("Show").Value))
+                        { 
+                            screenComp.ChangeShow(DefDatabase<ShowDef>.GetRandom());
+                            //Traverse.Create(screen.TryGetComp<CompScreen>()).Field("showUpdateTime").SetValue(0d);
+                        }
+                    }
+                    kermieDeactivated = true;
+                    //Log.Message("KermiePls Removed!");
                 }
             }
         }
