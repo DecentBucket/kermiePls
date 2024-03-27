@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using HarmonyLib;
 using RimFlix;
 using RimWorld;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using Verse;
 
 namespace RimFlix_Music_Syncer
@@ -23,30 +18,34 @@ namespace RimFlix_Music_Syncer
         public float kermieTime;
         public float kermieDuration;
     }
-    
+
+    /*
     public class SongsToSync : DefModExtension 
     {
         public List<string> songs;
     }
+    */
     
-    
-
     [StaticConstructorOnStartup]
     [HarmonyPatch]
     public class RimFlixMusicSync
     {
         public static float musicClock = 0f;
-        //Should replace bools with an enum
-        public static bool kermieActivated = true;
-        public static bool kermieDeactivated = true;
 
+        public enum SongShowState
+        {
+            Inactive,
+            Primed,
+            Active
+        }
+        public static SongShowState kermieMode;
         public static SongDef currentSong;
 
         static RimFlixMusicSync()
         {
             new Harmony("DecentBucket.RimFlix.Patch").PatchAll();
             musicClock = 0;
-            kermieActivated = true;
+            kermieMode = SongShowState.Inactive;
             currentSong = DefDatabase<SongDef>.GetNamed("EntrySong");
             //Log.Message("" + currentSong);
             //Log.Message("Started! " + musicClock);
@@ -66,27 +65,26 @@ namespace RimFlix_Music_Syncer
         {
             if (currentSong != null && Find.MusicManagerPlay.IsPlaying)
             {
-                IEnumerable<Building> furniture;
+                IEnumerable<Building> televisions;
                 //yes i know how this looks
-                furniture = Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("TubeTelevision"));
-                furniture = furniture.Concat(Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("FlatscreenTelevision")));
-                furniture = furniture.Concat(Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("MegascreenTelevision")));
+                televisions = Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("TubeTelevision"));
+                televisions = televisions.Concat(Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("FlatscreenTelevision")));
+                televisions = televisions.Concat(Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(DefDatabase<ThingDef>.GetNamed("MegascreenTelevision")));
 
-                if (Time.time >= musicClock && !kermieActivated)
+                if (Time.time >= musicClock && kermieMode == SongShowState.Primed)
                 {
-                    kermieActivated = true;
-                    kermieDeactivated = false;
+                    kermieMode = SongShowState.Active;
                     //Log.Message("KermiePls activated!");
-                    foreach (Building screen in furniture)
+                    foreach (Building screen in televisions)
                     {
                         screen.TryGetComp<CompScreen>().ChangeShow(DefDatabase<ShowDef>.GetNamed("KermiePls_Universal"));
                     }
                 }
 
-                if(!kermieDeactivated && currentSong.HasModExtension<MusicTimerModExtention>() && musicClock + currentSong.GetModExtension<MusicTimerModExtention>().kermieDuration <= Time.time)
+                if(kermieMode == SongShowState.Active && currentSong.HasModExtension<MusicTimerModExtention>() && musicClock + currentSong.GetModExtension<MusicTimerModExtention>().kermieDuration <= Time.time)
                 {
                     //Log.Message("Removing kermiePls!");
-                    foreach(Building screen in furniture)
+                    foreach(Building screen in televisions)
                     {
                         //Log.Message("Removing kermiePls from: " + screen.ThingID);
                         CompScreen screenComp = screen.TryGetComp<CompScreen>();
@@ -98,7 +96,7 @@ namespace RimFlix_Music_Syncer
                             //Traverse.Create(screen.TryGetComp<CompScreen>()).Field("showUpdateTime").SetValue(0d);
                         }
                     }
-                    kermieDeactivated = true;
+                    kermieMode = SongShowState.Inactive;
                     //Log.Message("KermiePls Removed!");
                 }
             }
@@ -116,7 +114,7 @@ namespace RimFlix_Music_Syncer
                     {
                         //Log.Message("Detected Mod Extension.");
                         musicClock = Time.time + song.GetModExtension<MusicTimerModExtention>().kermieTime;
-                        kermieActivated = false;
+                        kermieMode = SongShowState.Primed;
                         //Log.Message("musicClock set to: " + musicClock);
                     }
                 }
