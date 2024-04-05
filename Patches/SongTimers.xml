@@ -3,7 +3,6 @@
     <Operation Class="PatchOperationAddModExtension">
         <xpath>Defs/SongDef[clipPath="Songs/Relax/Ceta"]</xpath>
         <value>
-            <!-- 138.20-->
             <li Class="RimFlix_Music_Syncer.MusicTimerModExtention">
                 <kermieTime>138.03</kermieTime>
                 <kermieDuration>26.43</kermieDuration>
@@ -16,6 +15,15 @@
             <li Class="RimFlix_Music_Syncer.MusicTimerModExtention">
                 <kermieTime>211.85</kermieTime>
                 <kermieDuration>33.15</kermieDuration>
+            </li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>Defs/SongDef[clipPath="Songs/Relax/Tribal_Assembly"]</xpath>
+        <value>
+            <li Class="RimFlix_Music_Syncer.MusicTimerModExtention">
+                <kermieTime>150</kermieTime>
+                <kermieDuration>43.28</kermieDuration>
             </li>
         </value>
     </Operation>

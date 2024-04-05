@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "F0tEVc6s94LUe0UgDj90/diUVTmyD8QIaRbPCFFMYZBYni0lff3WxI6CNee/sYmnAobiKYljkANTYVftVqlj4g==",
+  "dgSpecHash": "upbx/MG0z6dIgP1FRg3Wdp8HdA3ujn8/D1eEVxKRxMny3Aichgcsst27SSL4VMdixxh05lupVlWl6JeL9k+6yw==",
   "success": true,
-  "projectFilePath": "C:\\Steam\\steamapps\\common\\RimWorld\\Mods\\kermiePls\\Source\\RimFlix Music Syncer\\RimFlix Music Syncer.csproj",
+  "projectFilePath": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFlix Music Syncer\\RimFlix Music Syncer1.5.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Bucket\\.nuget\\packages\\krafs.rimworld.ref\\1.4.3901\\krafs.rimworld.ref.1.4.3901.nupkg.sha512",
-    "C:\\Users\\Bucket\\.nuget\\packages\\lib.harmony\\2.3.1.1\\lib.harmony.2.3.1.1.nupkg.sha512"
+    "C:\\Users\\Bucket\\.nuget\\packages\\krafs.rimworld.ref\\1.5.4052-beta\\krafs.rimworld.ref.1.5.4052-beta.nupkg.sha512",
+    "C:\\Users\\Bucket\\.nuget\\packages\\lib.harmony\\2.3.3\\lib.harmony.2.3.3.nupkg.sha512"
   ],
   "logs": []
 }

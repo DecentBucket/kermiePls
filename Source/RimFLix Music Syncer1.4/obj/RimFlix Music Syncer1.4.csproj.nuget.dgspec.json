@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFlix Music Syncer\\RimFlix Music Syncer.csproj": {}
+    "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFLix Music Syncer1.4\\RimFlix Music Syncer1.4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFlix Music Syncer\\RimFlix Music Syncer.csproj": {
+    "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFLix Music Syncer1.4\\RimFlix Music Syncer1.4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFlix Music Syncer\\RimFlix Music Syncer.csproj",
+        "projectUniqueName": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFLix Music Syncer1.4\\RimFlix Music Syncer1.4.csproj",
         "projectName": "RimFlix Music Syncer",
-        "projectPath": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFlix Music Syncer\\RimFlix Music Syncer.csproj",
+        "projectPath": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFLix Music Syncer1.4\\RimFlix Music Syncer1.4.csproj",
         "packagesPath": "C:\\Users\\Bucket\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFlix Music Syncer\\obj\\",
+        "outputPath": "C:\\Users\\Bucket\\Documents\\modding\\rimworld\\kermiePls\\Source\\RimFLix Music Syncer1.4\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -40,7 +40,7 @@
           "dependencies": {
             "Krafs.Rimworld.Ref": {
               "target": "Package",
-              "version": "[1.5.4052-beta, )"
+              "version": "[1.4.3901, )"
             },
             "Lib.Harmony": {
               "target": "Package",

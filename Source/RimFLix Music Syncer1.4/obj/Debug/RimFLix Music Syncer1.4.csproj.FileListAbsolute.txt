@@ -1,0 +1,5 @@
+C:\Users\Bucket\Documents\modding\rimworld\kermiePls\Source\RimFLix Music Syncer1.4\obj\Debug\RimFLix Music Syncer1.4.csproj.AssemblyReference.cache
+C:\Users\Bucket\Documents\modding\rimworld\kermiePls\Source\RimFLix Music Syncer1.4\obj\Debug\RimFLix Music Syncer1.4.csproj.CoreCompileInputs.cache
+C:\Users\Bucket\Documents\modding\rimworld\kermiePls\Source\RimFLix Music Syncer1.4\obj\Debug\RimFLix Music Syncer1.4.csproj.CopyComplete
+C:\Users\Bucket\Documents\modding\rimworld\kermiePls\1.4\Assemblies\RimFlix Music Syncer.dll
+C:\Users\Bucket\Documents\modding\rimworld\kermiePls\Source\RimFLix Music Syncer1.4\obj\Debug\RimFlix Music Syncer.dll

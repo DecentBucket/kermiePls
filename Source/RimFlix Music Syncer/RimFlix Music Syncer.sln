@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimFlix Music Syncer", "RimFlix Music Syncer.csproj", "{DC2FD5B7-15BF-4206-A74C-2745B9AB5EA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimFlix Music Syncer1.5", "RimFlix Music Syncer1.5.csproj", "{DC2FD5B7-15BF-4206-A74C-2745B9AB5EA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RimFlix Music Syncer1.4", "..\RimFLix Music Syncer1.4\RimFlix Music Syncer1.4.csproj", "{95212896-19F4-483F-BA79-CCF6AF140FC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DC2FD5B7-15BF-4206-A74C-2745B9AB5EA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC2FD5B7-15BF-4206-A74C-2745B9AB5EA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC2FD5B7-15BF-4206-A74C-2745B9AB5EA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95212896-19F4-483F-BA79-CCF6AF140FC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95212896-19F4-483F-BA79-CCF6AF140FC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95212896-19F4-483F-BA79-CCF6AF140FC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95212896-19F4-483F-BA79-CCF6AF140FC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
