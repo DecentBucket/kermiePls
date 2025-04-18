@@ -4,8 +4,8 @@
         <xpath>Defs/SongDef[clipPath="Songs/Relax/Ceta"]</xpath>
         <value>
             <li Class="RimFlix_Music_Syncer.MusicTimerModExtention">
-                <kermieTime>138.03</kermieTime>
-                <kermieDuration>26.43</kermieDuration>
+                <kermieTime>138.53</kermieTime>
+                <kermieDuration>25.97</kermieDuration>
             </li>
         </value>
     </Operation>

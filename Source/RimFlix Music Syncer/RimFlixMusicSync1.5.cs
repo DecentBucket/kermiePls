@@ -30,7 +30,8 @@ namespace RimFlix_Music_Syncer
     [HarmonyPatch]
     public class RimFlixMusicSync
     {
-        public static float musicClock = 0f;
+        public static float musicClock = 0.0f;
+        public static SongDef currentSong;
 
         public enum SongShowState
         {
@@ -39,12 +40,11 @@ namespace RimFlix_Music_Syncer
             Active
         }
         public static SongShowState kermieMode;
-        public static SongDef currentSong;
 
         static RimFlixMusicSync()
         {
             new Harmony("DecentBucket.RimFlix.Patch").PatchAll();
-            musicClock = 0;
+            musicClock = 0.0f;
             kermieMode = SongShowState.Inactive;
             currentSong = DefDatabase<SongDef>.GetNamed("EntrySong");
             //Log.Message("" + currentSong);
@@ -55,7 +55,7 @@ namespace RimFlix_Music_Syncer
         [HarmonyPostfix]
         public static void MusicManagerPlayPostfix()
         {
-            currentSong = Traverse.Create(Find.MusicManagerPlay).Field<SongDef>("currentSong").Value;
+            currentSong = Find.MusicManagerPlay.CurrentSong;
             TryStartMusicTimer(currentSong);
         }
         
@@ -65,7 +65,7 @@ namespace RimFlix_Music_Syncer
         {
             if (kermieMode != SongShowState.Inactive)
             {
-                if (Time.time >= musicClock && kermieMode == SongShowState.Primed)
+                if (Find.MusicManagerPlay.SongTime >= musicClock && kermieMode == SongShowState.Primed)
                 {
 
                     foreach(ThingDef TV in DefDatabase<ShowDef>.GetNamed("KermiePls_Universal").televisionDefs)
@@ -80,7 +80,7 @@ namespace RimFlix_Music_Syncer
                     //Log.Message("KermiePls activated!");
                 }
 
-                if(kermieMode == SongShowState.Active && currentSong.HasModExtension<MusicTimerModExtention>() && musicClock + currentSong.GetModExtension<MusicTimerModExtention>().kermieDuration <= Time.time)
+                if(kermieMode == SongShowState.Active && currentSong.HasModExtension<MusicTimerModExtention>() && musicClock + currentSong.GetModExtension<MusicTimerModExtention>().kermieDuration <= Find.MusicManagerPlay.SongTime)
                 {
                    
                     //Log.Message("Removing kermiePls!");
@@ -88,7 +88,7 @@ namespace RimFlix_Music_Syncer
                     {
                         foreach (Building screen in Find.AnyPlayerHomeMap.listerBuildings.AllBuildingsColonistOfDef(TV))
                         {
-                            Log.Message("Removing kermiePls from: " + screen.ThingID);
+                            //Log.Message("Removing kermiePls from: " + screen.ThingID);
                             CompScreen screenComp = screen.TryGetComp<CompScreen>();
                             Traverse compTraverse = Traverse.Create(screenComp);
 
@@ -112,7 +112,7 @@ namespace RimFlix_Music_Syncer
                 if (song.HasModExtension<MusicTimerModExtention>())
                 {
                     //Log.Message("Detected Mod Extension.");
-                    musicClock = Time.time + song.GetModExtension<MusicTimerModExtention>().kermieTime;
+                    musicClock = Find.MusicManagerPlay.SongTime + song.GetModExtension<MusicTimerModExtention>().kermieTime;
                     kermieMode = SongShowState.Primed;
                     //Log.Message("musicClock set to: " + musicClock);
                 }
