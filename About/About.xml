@@ -5,6 +5,7 @@
 	<supportedVersions>
 		<li>1.4</li>
 		<li>1.5</li>
+		<li>1.6</li>
 	</supportedVersions>
 	<packageId>DecentBucket.RimFlixKermiePls</packageId>
 	<description>kermiePls YA kermiePls YE kermiePls YO kermiePls</description>
@@ -32,6 +33,13 @@
 				<steamWorkshopUrl>steam://url/CommunityFilePage/3194639480</steamWorkshopUrl>
 			</li>
 		</v1.5>
+		<v1.6>
+			<li>
+				<packageId>zal.rimflix</packageId>
+				<displayName>RimFlix (Continued)</displayName>
+				<steamWorkshopUrl>steam://url/CommunityFilePage/3194639480</steamWorkshopUrl>
+			</li>
+		</v1.6>
 	</modDependenciesByVersion>
 	<forceLoadAfter>
 		<li>brrainz.harmony</li>
